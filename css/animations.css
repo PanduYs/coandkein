@@ -1,0 +1,29 @@
+/* ══════════════════════════════════════════════════════════════
+   CO&KEIN — ANIMATION STYLES
+   Parallax, scroll reveals, transitions, keyframes
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── SCROLL ANIMATIONS ───────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition:
+    opacity 0.75s ease,
+    transform 0.75s ease;
+}
+.reveal.d1 {
+  transition-delay: 0.1s;
+}
+.reveal.d2 {
+  transition-delay: 0.2s;
+}
+.reveal.d3 {
+  transition-delay: 0.3s;
+}
+.reveal.d4 {
+  transition-delay: 0.4s;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

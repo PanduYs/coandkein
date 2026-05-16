@@ -1,0 +1,76 @@
+/* ══════════════════════════════════════════════════════════════
+   CO&KEIN — RESPONSIVE STYLES
+   Media queries for tablets (900px) and mobile (480px)
+   ══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 900px) {
+  #navbar {
+    padding: 1.2rem 1.8rem;
+  }
+  #navbar.scrolled {
+    padding: 0.9rem 1.8rem;
+  }
+  .nav-links,
+  .nav-ig {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
+  .hero-content {
+    padding: 2rem 1.8rem 2.5rem;
+  }
+  #about {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+    padding: 5rem 1.8rem;
+  }
+  .about-visual {
+    aspect-ratio: 4/3;
+  }
+  #collection {
+    padding: 5rem 1.8rem;
+  }
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .sec-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+  #contact {
+    padding: 6rem 1.8rem;
+  }
+  footer {
+    padding: 4rem 1.8rem 1.8rem;
+  }
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 0.8rem;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-center {
+    bottom: 4rem;
+    left: 1.8rem;
+    right: 1.8rem;
+  }
+  .hero-content {
+    padding: 6rem 1.8rem 2rem;
+  }
+  #heroLine1,
+  #heroLine2 {
+    font-size: clamp(3rem, 14vw, 6rem);
+  }
+}
