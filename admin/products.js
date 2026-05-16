@@ -147,7 +147,9 @@ function saveProduct() {
   refreshStats();
   renderProductsTable();
   renderOverview();
-  showToast(idx >= 0 ? "Product updated!" : "Product added!");
+  syncToGitHub().then(ok => {
+    showToast(ok ? (idx >= 0 ? "Product updated & synced!" : "Product added & synced!") : (idx >= 0 ? "Product updated!" : "Product added!"));
+  });
 }
 
 function askDelete(id, name) {
@@ -166,5 +168,7 @@ function confirmDelete() {
   refreshStats();
   renderProductsTable();
   renderOverview();
-  showToast("Product deleted.");
+  syncToGitHub().then(ok => {
+    showToast(ok ? "Product deleted & synced!" : "Product deleted!");
+  });
 }

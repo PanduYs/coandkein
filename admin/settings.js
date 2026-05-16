@@ -28,6 +28,7 @@ function loadSettings() {
   document.getElementById("cfgAboutTitle").value = c.aboutTitle;
   document.getElementById("cfgAboutBody").value = c.aboutBody;
   document.getElementById("cfgShopLink").value = c.shopLink;
+  document.getElementById("cfgGhToken").value = localStorage.getItem(GH_TOKEN_KEY) || "";
 
   aboutVisualImgBase64 = c.aboutVisualImg || "";
   const prev = document.getElementById("aboutVisualPreview");
@@ -58,8 +59,12 @@ function saveSettings() {
       "https://www.instagram.com/coandkein/",
     aboutVisualImg: finalImg,
   };
+  const token = document.getElementById("cfgGhToken").value.trim();
+  if (token) localStorage.setItem(GH_TOKEN_KEY, token);
   saveConfig(c);
-  showToast("Settings saved! Refresh the website to see changes.");
+  syncToGitHub().then(ok => {
+    showToast(ok ? "Saved & synced ke GitHub!" : "Saved! (GitHub sync gagal — cek token)");
+  });
 }
 
 function handleAboutVisualUpload(e) {

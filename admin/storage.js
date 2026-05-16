@@ -1,9 +1,12 @@
 // ══════════════════════════════════════════════════════════════
-//  CO&KEIN ADMIN — STORAGE  (server-first, localStorage fallback)
+//  CO&KEIN ADMIN — STORAGE
 // ══════════════════════════════════════════════════════════════
 
 const PASS_KEY    = 'ck_admin_pass';
 const SESSION_KEY = 'ck_session';
+const GH_TOKEN_KEY = 'ck_gh_token';
+const GH_REPO     = 'PanduYs/coandkein';
+const GH_FILE     = 'data.json';
 
 const DEFAULT_PASS = 'coandkein2024';
 const DEFAULT_CFG  = {
@@ -19,64 +22,72 @@ const DEFAULT_PRODUCTS = [
   { id:'p3', name:'COST OF BEING KIND', collection:'DROP 004', type:'Baby Tee',     image:'', price:'DM FOR INFO', badge:'limited', link:'https://www.instagram.com/coandkein/', available:true },
 ];
 
-// ── Server-backed storage ───────────────────────────────────
-let _cache    = null;
-let _isServer = null;
-
-function _checkServer() {
-  if (_isServer !== null) return _isServer;
-  try {
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', '/api/data', false);
-    xhr.send();
-    _isServer = (xhr.status === 200);
-    if (_isServer) _cache = JSON.parse(xhr.responseText) || {};
-  } catch {
-    _isServer = false;
-  }
-  return _isServer;
-}
-
-function _flush() {
-  try {
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', '/api/data', false);
-    xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify(_cache));
-  } catch {}
-}
-
-// ── Public API ──────────────────────────────────────────────
+// ── localStorage helpers ────────────────────────────────────
 function getPass() {
-  if (_checkServer()) return _cache.pass || DEFAULT_PASS;
   return localStorage.getItem(PASS_KEY) || DEFAULT_PASS;
 }
-
 function savePass(p) {
-  if (_checkServer()) { _cache.pass = p; _flush(); return; }
   localStorage.setItem(PASS_KEY, p);
 }
-
 function getProducts() {
-  if (_checkServer()) return _cache.products || DEFAULT_PRODUCTS;
   try {
     return JSON.parse(localStorage.getItem('ck_products')) || DEFAULT_PRODUCTS;
   } catch { return DEFAULT_PRODUCTS; }
 }
-
 function saveProducts(p) {
-  if (_checkServer()) { _cache.products = p; _flush(); return; }
   localStorage.setItem('ck_products', JSON.stringify(p));
 }
-
 function getConfig() {
-  if (_checkServer()) return Object.assign({}, DEFAULT_CFG, _cache.config);
   try {
     return Object.assign({}, DEFAULT_CFG, JSON.parse(localStorage.getItem('ck_config')));
   } catch { return { ...DEFAULT_CFG }; }
 }
-
 function saveConfig(c) {
-  if (_checkServer()) { _cache.config = c; _flush(); return; }
   localStorage.setItem('ck_config', JSON.stringify(c));
+}
+
+// ── GitHub Auto-Sync ────────────────────────────────────────
+async function syncToGitHub() {
+  const token = localStorage.getItem(GH_TOKEN_KEY);
+  if (!token) return false;
+
+  try {
+    const data = {
+      products: getProducts(),
+      config  : getConfig(),
+      pass    : getPass(),
+    };
+
+    // Get current file SHA (required by GitHub API to update)
+    const getResp = await fetch(
+      'https://api.github.com/repos/' + GH_REPO + '/contents/' + GH_FILE,
+      { headers: { 'Authorization': 'token ' + token, 'Accept': 'application/vnd.github.v3+json' } }
+    );
+    const fileInfo = await getResp.json();
+
+    // UTF-8 safe base64 encode
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+
+    const putResp = await fetch(
+      'https://api.github.com/repos/' + GH_REPO + '/contents/' + GH_FILE,
+      {
+        method : 'PUT',
+        headers: {
+          'Authorization': 'token ' + token,
+          'Content-Type' : 'application/json',
+          'Accept'       : 'application/vnd.github.v3+json',
+        },
+        body: JSON.stringify({
+          message: 'update via admin panel',
+          content : content,
+          sha     : fileInfo.sha,
+        }),
+      }
+    );
+
+    return putResp.ok;
+  } catch (e) {
+    console.error('GitHub sync error:', e);
+    return false;
+  }
 }

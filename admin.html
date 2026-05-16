@@ -593,6 +593,18 @@
           </div>
         </div>
 
+        <div class="settings-card">
+          <h3>GitHub Auto-Sync</h3>
+          <p style="font-size:.75rem; color:var(--muted); margin-bottom:1.2rem; line-height:1.6">
+            Masukkan GitHub Token agar setiap Save otomatis update website online. Token hanya tersimpan di browser ini.
+          </p>
+          <div class="form-row">
+            <label class="form-label">GitHub Personal Access Token</label>
+            <input type="password" id="cfgGhToken" class="form-input" placeholder="ghp_xxxxxxxxxxxx">
+            <p class="form-hint">Buat di: github.com → Settings → Developer settings → Personal access tokens → Fine-grained → beri akses "Contents" read+write ke repo coandkein</p>
+          </div>
+        </div>
+
         <button class="save-settings-btn" onclick="saveSettings()">Save Settings →</button>
       </div>
 
