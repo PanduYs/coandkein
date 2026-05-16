@@ -496,29 +496,10 @@
         </div>
 
         <div class="quick-actions">
-          <button class="quick-btn primary" onclick="openAddModal()">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-            </svg>
-            Add Product
-          </button>
-          <button class="quick-btn secondary" onclick="showView('settings', document.querySelector('[onclick*=\"settings\"]'))">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="3"/>
-              <path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
-            </svg>
-            Site Settings
-          </button>
-          <a href="index.html" target="_blank" class="quick-btn secondary" style="text-decoration:none">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
-              <polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/>
-            </svg>
-            Preview Website
-          </a>
-          <button class="quick-btn secondary" onclick="exportDataJson()">
-            ↓ Export data.json
-          </button>
+          <button class="quick-btn primary" onclick="openAddModal()">+ Add Product</button>
+          <button class="quick-btn secondary" onclick="showView('settings', document.querySelector('[onclick*=&quot;settings&quot;]'))">&#9881; Site Settings</button>
+          <a href="index.html" target="_blank" class="quick-btn secondary" style="text-decoration:none">&#8599; Preview Website</a>
+          <button class="quick-btn secondary" onclick="exportDataJson()">&#8595; Export data.json</button>
         </div>
 
         <div class="section-head">
