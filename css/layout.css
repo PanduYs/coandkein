@@ -421,6 +421,7 @@
 .about-visual {
   position: relative;
   aspect-ratio: 3/4;
+  max-height: 520px;
   background: var(--card);
   overflow: hidden;
 }
