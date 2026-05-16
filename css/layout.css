@@ -340,11 +340,11 @@
 
 /* ── ABOUT ───────────────────────────── */
 #about {
-  padding: 6rem 3rem;
+  padding: 4rem 3rem;
   background: #ffffff;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 7rem;
+  gap: 4rem;
   align-items: center;
 }
 .about-label {
