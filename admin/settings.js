@@ -6,6 +6,22 @@
 let aboutVisualImgBase64 = "";
 let aboutVisualUrlMode = false;
 
+function exportDataJson() {
+  const data = {
+    products: getProducts(),
+    config: getConfig(),
+    pass: getPass(),
+  };
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "data.json";
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast("data.json berhasil didownload! Ganti file lama lalu git push.");
+}
+
 function loadSettings() {
   const c = getConfig();
   document.getElementById("cfgLine1").value = c.heroLine1;
