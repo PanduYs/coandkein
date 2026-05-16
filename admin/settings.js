@@ -24,9 +24,6 @@ function exportDataJson() {
 
 function loadSettings() {
   const c = getConfig();
-  document.getElementById("cfgLine1").value = c.heroLine1;
-  document.getElementById("cfgLine2").value = c.heroLine2;
-  document.getElementById("cfgDropBadge").value = c.heroDropBadge;
   document.getElementById("cfgDropTitle").value = c.dropTitle;
   document.getElementById("cfgAboutTitle").value = c.aboutTitle;
   document.getElementById("cfgAboutBody").value = c.aboutBody;
@@ -52,10 +49,6 @@ function saveSettings() {
   const urlVal = document.getElementById("cfgAboutVisualImg").value.trim();
   const finalImg = urlVal ? urlVal : aboutVisualImgBase64;
   const c = {
-    heroLine1: document.getElementById("cfgLine1").value.trim() || "ELEVATE",
-    heroLine2: document.getElementById("cfgLine2").value.trim() || "YOUR AURA",
-    heroDropBadge:
-      document.getElementById("cfgDropBadge").value.trim() || "DROP 004",
     dropTitle:
       document.getElementById("cfgDropTitle").value.trim() || "DROP 004",
     aboutTitle: document.getElementById("cfgAboutTitle").value.trim(),

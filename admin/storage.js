@@ -7,9 +7,6 @@ const SESSION_KEY = 'ck_session';
 
 const DEFAULT_PASS = 'coandkein2024';
 const DEFAULT_CFG  = {
-  heroLine1    : 'ELEVATE',
-  heroLine2    : 'YOUR AURA',
-  heroDropBadge: 'DROP 004',
   dropTitle    : 'DROP 004',
   aboutTitle   : 'WE DRESS\nTHE BOLD',
   aboutBody    : 'Elevate your aura with CO & KEIN premium cuts and redefine the art of relaxed dominance. Be the calm in the chaos. Dress like you own the silence.',

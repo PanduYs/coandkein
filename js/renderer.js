@@ -29,9 +29,6 @@ function applyConfig() {
     const el = document.getElementById(id);
     if (el && val) el.innerHTML = val.replace(/\n/g, "<br>");
   };
-  set("heroLine1", c.heroLine1);
-  set("heroLine2", c.heroLine2);
-  set("heroDropBadge", c.heroDropBadge);
   set("dropTitle", c.dropTitle);
   set("aboutTitle", c.aboutTitle);
   set("aboutBody", c.aboutBody);

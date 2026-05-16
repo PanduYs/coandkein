@@ -40,9 +40,6 @@ const DEFAULT_PRODUCTS = [
 ];
 
 const DEFAULT_CONFIG = {
-  heroLine1: "ELEVATE",
-  heroLine2: "YOUR AURA",
-  heroDropBadge: "DROP 004",
   dropTitle: "DROP 004",
   aboutTitle: "WE DRESS\nTHE BOLD",
   aboutBody:
