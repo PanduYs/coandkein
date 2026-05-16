@@ -340,7 +340,7 @@
 
 /* ── ABOUT ───────────────────────────── */
 #about {
-  padding: 9rem 3rem;
+  padding: 6rem 3rem;
   background: #ffffff;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -393,6 +393,30 @@
 .about-cta:hover {
   color: var(--red);
   border-color: var(--red);
+}
+.about-stats {
+  display: flex;
+  gap: 2.5rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+.about-stat-num {
+  display: block;
+  font-family: var(--f-cond);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #000000;
+  line-height: 1;
+  margin-bottom: 0.3rem;
+}
+.about-stat-label {
+  display: block;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.4);
 }
 .about-visual {
   position: relative;
